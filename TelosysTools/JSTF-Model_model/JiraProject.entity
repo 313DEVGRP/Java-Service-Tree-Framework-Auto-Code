@@ -1,0 +1,5 @@
+// Entity JiraProject
+
+JiraProject {
+  jiraProject : string ; // field example 
+}

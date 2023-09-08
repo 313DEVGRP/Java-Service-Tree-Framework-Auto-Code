@@ -1,0 +1,32 @@
+#parse("/include/java_header.vm")
+
+package ${target.javaPackageFromFolder(${SRC})};
+
+import com.egovframework.javaservice.treeframework.service.TreeServiceImpl;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import lombok.AllArgsConstructor;
+#set( $entityLowerCase = $fn.toLowerCase( $entity.name ) )
+#foreach( $field in $entity.nonKeyAttributes ) 
+import ${ROOT_PKG}.arms.${entityLowerCase}.dao.${entity.name}Repository;
+
+
+@AllArgsConstructor
+#set( $entity0toLowerCase = ${field.name} )
+@Service("$entity0toLowerCase")
+#end
+public class ${entity.name}Impl extends TreeServiceImpl implements ${entity.name}{
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	private final ${entity.name}Repository ${entity0toLowerCase}Repository;
+
+}

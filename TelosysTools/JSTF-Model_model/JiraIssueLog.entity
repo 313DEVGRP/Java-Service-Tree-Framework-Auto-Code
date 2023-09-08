@@ -1,0 +1,5 @@
+// Entity JiraIssueLog
+
+JiraIssueLog {
+  jiraIssueLog : string ; // field example 
+}

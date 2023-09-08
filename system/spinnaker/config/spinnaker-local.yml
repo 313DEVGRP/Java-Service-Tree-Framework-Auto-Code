@@ -1,0 +1,35 @@
+services:
+  clouddriver:
+     cache:
+       expiresAfterWriteSeconds: 0
+  deck:
+     cache:
+       expiresAfterWriteSeconds: 0
+  echo:
+     cache:
+       expiresAfterWriteSeconds: 0
+  fiat:
+     cache:
+       expiresAfterWriteSeconds: 0
+  front50:
+     cache:
+       expiresAfterWriteSeconds: 0
+  gate:
+     cache:
+       expiresAfterWriteSeconds: 0
+  igor:
+     cache:
+       expiresAfterWriteSeconds: 0
+  orca:
+     cache:
+       expiresAfterWriteSeconds: 0
+  rosco:
+     cache:
+       expiresAfterWriteSeconds: 0
+  redis:
+     baseUrl: redis://redis:6379
+     cache:
+       expiresAfterWriteSeconds: 0
+  monitoringDaemon:
+     cache:
+       expiresAfterWriteSeconds: 0

@@ -1,0 +1,15 @@
+spectator:
+  applicationName: ${spring.application.name}
+  webEndpoint:
+    enabled: false
+
+# halconfig
+cors:
+  allowedOriginsPattern: http://192.168.25.46:9000
+
+server:
+  port: ${services.fiat.port:7003}
+  address: ${services.fiat.host:localhost}
+
+redis:
+  connection: ${services.redis.baseUrl:redis://localhost:6379}

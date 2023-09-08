@@ -1,0 +1,5 @@
+// Entity ReqCommentLog
+
+ReqCommentLog {
+  reqCommentLog : string ; // field example 
+}

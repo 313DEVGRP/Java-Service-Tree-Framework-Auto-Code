@@ -1,0 +1,5 @@
+// Entity ReqAdd
+
+ReqAdd {
+  reqAdd : string ; // field example 
+}

@@ -1,0 +1,176 @@
+version: '3.6'
+
+services:
+
+  jira:
+    image: 313devgrp/jira:12.14
+    ports:
+      - "48080:48080"
+    volumes: 
+      - jiraHome:/web/atlassian-jira-5.2.11-standalone/home:nocopy
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy: &devtool-deploy
+      mode: replicated
+      replicas: 1
+    networks: &devtool-network
+      - dev_network
+    extra_hosts: &devtool-addhost
+      - "313.co.kr:192.168.25.46"
+      - "db.313.co.kr:192.168.25.40"
+      - "nas.313.co.kr:192.168.25.42"
+      - "www.313.co.kr:192.168.25.42"
+      - "ubuntu.313.co.kr:192.168.25.46"
+    logging: &devtool-logging
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "100m"
+
+  confluence:
+    image: 313devgrp/confluence:12.14
+    ports:
+      - "58090:58090"
+    volumes: 
+      - confluenceHome:/web/atlassian-confluence-4.3.7/data:nocopy
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy: *devtool-deploy
+    networks: *devtool-network
+    extra_hosts: *devtool-addhost
+    logging: *devtool-logging
+
+  fecru:
+    image: 313devgrp/fecru:13.02
+    ports:
+      - "8060:8060"
+    volumes: 
+      - fecruHome:/web/fecru-3.3.3/var:nocopy
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy: *devtool-deploy
+    networks: *devtool-network
+    extra_hosts: *devtool-addhost
+    logging: *devtool-logging
+
+  sonar:
+    image: 313devgrp/sonar:12.06
+    ports:
+      - "9090:9000"
+    volumes: 
+      - sonarHome:/web/sonarqube-4.5.6/data:nocopy
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy: *devtool-deploy
+    networks: *devtool-network
+    extra_hosts: *devtool-addhost
+    logging: *devtool-logging
+
+  jenkins:
+    image: jenkins/jenkins:2.319.3-lts
+    environment:
+      JAVA_OPTS: "-Xms1g -Xmx1g -XX:+UseG1GC -Dfile.encoding=UTF-8 -Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true"
+      JENKINS_OPTS: "--prefix=/jenkins"
+    ports:
+      - "38080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkinsHome:/var/jenkins_home:nocopy
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy: *devtool-deploy
+    networks: *devtool-network
+    extra_hosts: *devtool-addhost
+    logging: *devtool-logging
+
+  zipkin:
+    image: openzipkin/zipkin:2.23.16
+    ports:
+      - 9411:9411
+    volumes: 
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - STORAGE_TYPE=elasticsearch
+      # Point the zipkin at the storage b'ackend
+      - "ES_HOSTS=192.168.25.46:9300"
+      # Uncomment to see requests to and from elasticsearch
+      # - ES_HTTP_LOGGING=BODY
+    deploy: *devtool-deploy
+    networks: *devtool-network
+    extra_hosts: *devtool-addhost
+    logging: *devtool-logging
+
+  zipkinDependencies:
+    image: openzipkin/zipkin-dependencies:2.6.4
+    entrypoint: crond -f
+    environment:
+      - STORAGE_TYPE=elasticsearch
+      - "ES_HOSTS=192.168.25.46:9300"
+      - "ES_NODES_WAN_ONLY=true"
+    volumes: 
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy: *devtool-deploy
+    networks: *devtool-network
+    extra_hosts: *devtool-addhost
+    logging: *devtool-logging
+
+  jrebel:
+    image: 313devgrp/jrebel:2018.07.12
+    ports:
+      - "31301:8888"
+    volumes: 
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy: *devtool-deploy
+    networks: *devtool-network
+    extra_hosts: *devtool-addhost
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 192.168.25.46:24224
+        fluentd-async-connect: "true"
+        fluentd-retry-wait: "1s"
+        fluentd-max-retries: "30"
+        tag: jrebel
+
+volumes:
+
+  jenkinsHome:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=${NFSSERVER:-1.2.3.4},nolock,soft,rw,sync"
+      device: ":${NFSPATH:-/nfspath}/devtool/jenkins"
+
+  jiraHome:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=${NFSSERVER:-1.2.3.4},nolock,soft,rw,sync"
+      device: ":${NFSPATH:-/nfspath}/devtool/jira"
+
+  confluenceHome:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=${NFSSERVER:-1.2.3.4},nolock,soft,rw,sync"
+      device: ":${NFSPATH:-/nfspath}/devtool/confluence"
+
+  fecruHome:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=${NFSSERVER:-1.2.3.4},nolock,soft,rw,sync"
+      device: ":${NFSPATH:-/nfspath}/devtool/fecru"
+
+  sonarHome:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=${NFSSERVER:-1.2.3.4},nolock,soft,rw,sync"
+      device: ":${NFSPATH:-/nfspath}/devtool/sonar"
+networks:
+  dev_network:
+    attachable: true

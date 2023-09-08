@@ -1,0 +1,30 @@
+#parse("/include/java_header.vm")
+
+package ${target.javaPackageFromFolder(${SRC})};
+
+import com.egovframework.javaservice.treeframework.model.TreeBaseEntity;
+import com.egovframework.javaservice.treeframework.model.TreeSearchEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.*;
+import com.egovframework.javaservice.treeframework.model.TreeBaseDTO;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+
+#set( $entityUpperCase = $fn.toUpperCase( $entity.name ) )
+#set( $entityLowerCase = $fn.toLowerCase( $entity.name ) )
+@Getter
+@Setter
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${entity.name}DTO extends TreeBaseDTO {
+
+  
+}

@@ -1,0 +1,187 @@
+services:
+  clouddriver:
+    port: 7002
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    healthEndpoint: /health
+    env: {}
+    artifactId: spinnaker-clouddriver=2.0.0-20180221152902
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://clouddriver:7002
+  deck:
+    port: 9000
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    env: {}
+    artifactId: spinnaker-deck=2.1.0-20180221143146
+    overrideBaseUrl: http://192.168.25.46:9000
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: false
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://192.168.25.46:9000
+  echo:
+    port: 8089
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    healthEndpoint: /health
+    env: {}
+    artifactId: spinnaker-echo=0.8.0-20180221133510
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://echo:8089
+  fiat:
+    port: 7003
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    healthEndpoint: /health
+    env: {}
+    artifactId: spinnaker-fiat=0.5.0-20180221133510
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://fiat:7003
+  front50:
+    port: 8080
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    healthEndpoint: /health
+    env: {}
+    artifactId: spinnaker-front50=0.9.0-20180221133510
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://front50:8080
+  gate:
+    port: 8084
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    env: {}
+    artifactId: spinnaker-gate=0.10.0-20180221133510
+    overrideBaseUrl: http://192.168.25.46:8084
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://192.168.25.46:8084
+  igor:
+    port: 8088
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    healthEndpoint: /health
+    env: {}
+    artifactId: spinnaker-igor=0.9.0-20180221133510
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://igor:8088
+  orca:
+    port: 8083
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    healthEndpoint: /health
+    env: {}
+    artifactId: spinnaker-orca=0.10.0-20180221133510
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://orca:8083
+  rosco:
+    port: 8087
+    address: localhost
+    host: 0.0.0.0
+    scheme: http
+    healthEndpoint: /health
+    env: {}
+    artifactId: spinnaker-rosco=0.5.0-20180221133510
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: true
+    sidecar: false
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://rosco:8087
+  redis:
+    port: 6379
+    address: localhost
+    host: localhost
+    scheme: redis
+    env:
+      MASTER: 'true'
+    artifactId: redis
+    kubernetes:
+      imagePullSecrets: []
+    enabled: true
+    monitored: false
+    sidecar: false
+    safeToUpdate: false
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://redis:6379
+  monitoringDaemon:
+    port: 8008
+    address: localhost
+    host: localhost
+    scheme: http
+    env: {}
+    artifactId: spinnaker-monitoring-daemon=0.5.0-20180221133510
+    kubernetes:
+      imagePullSecrets: []
+    enabled: false
+    monitored: false
+    sidecar: true
+    safeToUpdate: true
+    targetSize: 1
+    skipLifeCycleManagement: false
+    baseUrl: http://monitoringDaemon:8008

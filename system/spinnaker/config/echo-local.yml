@@ -1,0 +1,24 @@
+mail:
+  enabled: false
+  from: spinnaker-v2@dummy.com
+
+hipchat:
+  enabled: false
+
+twillio:
+  enabled: false
+
+debug: true
+
+spring:
+  mail:
+    host: smtp.game.dummy
+    default-encoding: UTF-8
+    properties:
+      debug: true
+  freemarker:
+    enabled: true
+    charset: UTF-8
+
+global.spinnaker.timezone: Asia/Seoul
+spinnaker.baseUrl: http://192.168.25.46:9000

@@ -1,0 +1,48 @@
+spectator:
+  applicationName: ${spring.application.name}
+  webEndpoint:
+    enabled: false
+
+spinnaker:
+  s3:
+    bucket: spinnaker
+    rootFolder: front50
+    region: us-east-1
+    endpoint: http://minio:62222
+    accessKeyId: minio
+    secretAccessKey: miniostorage
+    enabled: true
+    versioning: false
+  gcs:
+    rootFolder: front50
+    enabled: false
+  azs:
+    enabled: false
+  oraclebmcs:
+    enabled: false
+  redis:
+    host: localhost
+    port: 6379
+    enabled: false
+
+server:
+  port: ${services.front50.port:8080}
+  address: ${services.front50.host:localhost}
+
+cassandra:
+  enabled: false
+
+hystrix:
+  command:
+    default.execution.isolation.thread.timeoutInMilliseconds: 60000
+  threadpool:
+    DefaultNotificationDAO:
+      coreSize: 25
+      maxQueueSize: 100
+    DefaultPipelineDAO:
+      coreSize: 25
+      maxQueueSize: 100
+
+logging:
+  level:
+    root: INFO

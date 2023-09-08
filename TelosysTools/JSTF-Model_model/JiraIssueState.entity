@@ -1,0 +1,5 @@
+// Entity JiraIssueState
+
+JiraIssueState {
+  jiraIssueState : string ; // field example 
+}

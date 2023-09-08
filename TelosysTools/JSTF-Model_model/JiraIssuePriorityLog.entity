@@ -1,0 +1,5 @@
+// Entity JiraIssuePriorityLog
+
+JiraIssuePriorityLog {
+  jiraIssuePriorityLog : string ; // field example 
+}

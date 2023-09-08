@@ -1,0 +1,141 @@
+spectator:
+  applicationName: ${spring.application.name}
+  webEndpoint:
+    enabled: false
+
+# halconfig
+
+appengine:
+  enabled: false
+  accounts: []
+aws:
+  enabled: false
+  accounts: []
+  defaultKeyPairTemplate: '{{name}}-keypair'
+  defaultRegions:
+  - name: us-west-2
+  defaults:
+    iamRole: BaseIAMRole
+azure:
+  enabled: false
+  accounts: []
+  bakeryDefaults:
+    templateFile: azure-linux.json
+    baseImages:
+    - baseImage:
+        id: ubuntu
+        shortDescription: v14.05
+        detailedDescription: Ubuntu Server 14.04.5-LTS
+        packageType: deb
+        publisher: Canonical
+        offer: UbuntuServer
+        sku: 14.04.5-LTS
+        version: 14.04.201612130
+    - baseImage:
+        id: centos
+        shortDescription: '7'
+        detailedDescription: OpenLogic CentOS 7.1.20150731
+        packageType: rpm
+        publisher: OpenLogic
+        offer: CentOS
+        sku: '7.1'
+        version: 7.1.20150731
+    - baseImage:
+        id: windows-2012-r2
+        shortDescription: 2012 R2
+        detailedDescription: Windows Server 2012 R2 Datacenter
+        packageType: nupkg
+        templateFile: azure-windows-2012-r2.json
+        publisher: MicrosoftWindowsServer
+        offer: WindowsServer
+        sku: 2012-R2-Datacenter
+        version: 4.0.20170111
+
+dcos:
+  enabled: false
+  accounts: []
+  clusters: []
+
+dockerRegistry:
+  enabled: true
+  accounts:
+  - name: spinnaker-docker-registry
+    requiredGroupMembership: []
+    providerVersion: V1
+    address: https://index.docker.io
+    username: 313devgrp
+    password: love@0618
+    email: 313cokr@gmail.com
+    cacheIntervalSeconds: 30
+    clientTimeoutMillis: 60000
+    cacheThreads: 1
+    paginateSize: 100
+    sortTagsByDate: false
+    trackDigests: false
+    insecureRegistry: true
+    repositories: []
+  primaryAccount: spinnaker-docker-registry
+
+google:
+  enabled: false
+  accounts: []
+  bakeryDefaults:
+    templateFile: gce.json
+    baseImages:
+    - baseImage:
+        id: trusty
+        shortDescription: v14.04
+        detailedDescription: Ubuntu Trusty Tahr v14.04
+        packageType: deb
+        imageFamily: false
+      virtualizationSettings:
+        sourceImageFamily: ubuntu-1404-lts
+    - baseImage:
+        id: xenial
+        shortDescription: v16.04
+        detailedDescription: Ubuntu Xenial Xerus v16.04
+        packageType: deb
+        imageFamily: false
+      virtualizationSettings:
+        sourceImageFamily: ubuntu-1604-lts
+    zone: us-central1-f
+    network: default
+    useInternalIp: false
+
+kubernetes:
+  enabled: false
+  accounts: []
+
+openstack:
+  enabled: false
+  accounts: []
+  bakeryDefaults:
+    baseImages:
+    - baseImage:
+        id: vivid
+        shortDescription: '15.04'
+        detailedDescription: Ubuntu Vivid Vervet v15.04
+        packageType: deb
+      virtualizationSettings:
+      - region: r1
+        instanceType: smem-2vcpu
+        sourceImageId: b12f2467-cfca-4a65-b29b-d11b8c46818d
+        sshUserName: ubuntu
+      - region: r2
+        instanceType: smem-2vcpu
+        sourceImageId: b12f2467-cfca-4a65-b29b-d11b8c46818e
+        sshUserName: ubuntu
+
+oraclebmcs:
+  enabled: false
+  accounts: []
+
+server:
+  port: ${services.rosco.port:8087}
+  address: ${services.rosco.host:localhost}
+
+redis:
+  connection: ${services.redis.baseUrl:redis://localhost:6379}
+
+rosco:
+  configDir: /opt/rosco/config/packer

@@ -1,0 +1,86 @@
+spectator:
+  applicationName: ${spring.application.name}
+  webEndpoint:
+    enabled: false
+
+appengine:
+  enabled: false
+  accounts: []
+aws:
+  enabled: false
+  accounts: []
+  defaultKeyPairTemplate: '{{name}}-keypair'
+  defaultRegions:
+  - name: us-west-2
+  defaults:
+    iamRole: BaseIAMRole
+azure:
+  enabled: false
+  accounts: []
+  bakeryDefaults:
+    templateFile: azure-linux.json
+    baseImages: []
+dcos:
+  enabled: false
+  accounts: []
+  clusters: []
+dockerRegistry:
+  enabled: true
+  accounts:
+  - name: spinnaker-docker-registry
+    requiredGroupMembership: []
+    providerVersion: V1
+    address: https://index.docker.io
+    username: 313devgrp
+    password: love@0618
+    email: 313cokr@gmail.com
+    cacheIntervalSeconds: 30
+    clientTimeoutMillis: 60000
+    cacheThreads: 1
+    paginateSize: 100
+    sortTagsByDate: false
+    trackDigests: false
+    insecureRegistry: true
+    repositories: [313devgrp/java-service-tree-framework-backend-server,313devgrp/java-service-tree-framework-middle-proxy]
+  primaryAccount: spinnaker-docker-registry
+google:
+  enabled: false
+  accounts: []
+  bakeryDefaults:
+    templateFile: gce.json
+    baseImages: []
+    zone: us-central1-f
+    network: default
+    useInternalIp: false
+kubernetes:
+  enabled: false
+  accounts: []
+openstack:
+  enabled: false
+  accounts: []
+  bakeryDefaults:
+    baseImages: []
+oraclebmcs:
+  enabled: false
+  accounts: []
+
+artifacts:
+  gcs:
+    enabled: false
+    accounts: []
+  github:
+    enabled: false
+    accounts: []
+
+# halconfig
+
+server:
+  port: ${services.clouddriver.port:7002}
+  address: ${services.clouddriver.host:localhost}
+
+redis:
+  connection: ${services.redis.baseUrl:redis://localhost:6379}
+
+caching:
+  redis:
+    hashingEnabled: true

@@ -1,0 +1,17 @@
+#parse("/include/java_header.vm")
+
+package ${target.javaPackageFromFolder(${SRC})};
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+#set( $entityLowerCase = $fn.toLowerCase( $entity.name ) )
+#foreach( $field in $entity.nonKeyAttributes ) 
+import ${ROOT_PKG}.arms.${entityLowerCase}.model.${entity.name}Entity;
+#end
+
+public interface ${entity.name}JpaRepository extends JpaRepository<${entity.name}Entity,Long>, JpaSpecificationExecutor<${entity.name}Entity> {
+
+}

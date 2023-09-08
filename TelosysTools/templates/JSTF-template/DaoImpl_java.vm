@@ -1,0 +1,24 @@
+#parse("/include/java_header.vm")
+
+package ${target.javaPackageFromFolder(${SRC})};
+
+import java.util.List;
+import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
+
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@AllArgsConstructor
+public class ${entity.name}Repository {
+#set( $entityLowerCase = $fn.toLowerCase( $entity.name ) )
+#foreach( $field in $entity.nonKeyAttributes ) 
+#set( $entity0toLowerCase = ${field.name} )
+#end
+    private final ${entity.name}JpaRepository ${entity0toLowerCase}JpaRepository;
+
+}
