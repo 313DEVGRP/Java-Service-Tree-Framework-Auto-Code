@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import ${ROOT_PKG}.arms.${entityLowerCase}.dao.${entity.name}Repository;
 
 
+@Slf4j
 @AllArgsConstructor
 #set( $entity0toLowerCase = ${field.name} )
 @Service("$entity0toLowerCase")

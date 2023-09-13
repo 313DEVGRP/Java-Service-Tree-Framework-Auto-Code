@@ -1,5 +1,0 @@
-// Entity PdServiceVersionLog
-
-PdServiceVersionLog {
-  pdServiceVersionLog : string ; // field example 
-}

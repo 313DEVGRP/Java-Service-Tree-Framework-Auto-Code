@@ -1,5 +1,0 @@
-// Entity FileRepositoryLog
-
-FileRepositoryLog {
-  fileRepositoryLog : string ; // field example 
-}

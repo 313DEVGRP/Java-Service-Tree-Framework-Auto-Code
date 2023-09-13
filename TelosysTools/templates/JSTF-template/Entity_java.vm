@@ -5,37 +5,33 @@ package ${target.javaPackageFromFolder(${SRC})};
 import com.egovframework.javaservice.treeframework.model.TreeBaseEntity;
 import com.egovframework.javaservice.treeframework.model.TreeSearchEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 #set( $entityUpperCase = $fn.toUpperCase( $entity.name ) )
 #set( $entityLowerCase = $fn.toLowerCase( $entity.name ) )
 @Entity
 @Getter
 @Setter
+@Builder
 @Table(name = "T_ARMS_$entityUpperCase")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class ${entity.name}Entity extends TreeSearchEntity implements Serializable {
-
-    public ${entity.name}Entity() {
-        super();
-    }
-
-    public ${entity.name}Entity(Boolean copyBooleanValue) {
-        super();
-        this.copyBooleanValue = copyBooleanValue;
-    }
 
  	@Override
     @Id

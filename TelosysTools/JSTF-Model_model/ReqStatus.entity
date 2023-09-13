@@ -1,5 +1,0 @@
-// Entity ReqStatus
-
-ReqStatus {
-  reqStatus : string ; // field example 
-}

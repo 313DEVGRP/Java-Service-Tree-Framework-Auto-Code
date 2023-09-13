@@ -1,5 +1,0 @@
-// Entity ReqAddLog
-
-ReqAddLog {
-  reqAddLog : string ; // field example 
-}

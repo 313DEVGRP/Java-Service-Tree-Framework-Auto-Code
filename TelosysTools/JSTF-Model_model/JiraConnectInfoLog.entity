@@ -1,5 +1,0 @@
-// Entity JiraConnectInfoLog
-
-JiraConnectInfoLog {
-  jiraConnectInfoLog : string ; // field example 
-}

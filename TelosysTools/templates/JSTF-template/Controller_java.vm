@@ -46,6 +46,7 @@ public class ${entity.name}Controller extends TreeAbstractController<${entity.na
     @PostConstruct
     public void initialize() {
         setTreeService(${entity0toLowerCase});
+		setTreeEntity(${entity.name}Entity.class);
     }
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());

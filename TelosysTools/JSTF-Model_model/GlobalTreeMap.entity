@@ -1,5 +1,0 @@
-// Entity GlobalTreeMap
-
-GlobalTreeMap {
-  globalTreeMap : string ; // field example 
-}

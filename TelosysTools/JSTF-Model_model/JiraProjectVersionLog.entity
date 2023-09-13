@@ -1,5 +1,0 @@
-// Entity JiraProjectVersionLog
-
-JiraProjectVersionLog {
-  jiraProjectVersionLog : string ; // field example 
-}

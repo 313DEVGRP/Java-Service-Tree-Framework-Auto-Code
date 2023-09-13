@@ -1,5 +1,0 @@
-// Entity MapPdServiceNJira
-
-MapPdServiceNJira {
-  mapPdServiceNJira : string ; // field example 
-}

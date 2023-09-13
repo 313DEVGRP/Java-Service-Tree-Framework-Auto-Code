@@ -1,5 +1,0 @@
-// Entity JiraIssueStateLog
-
-JiraIssueStateLog {
-  jiraIssueStateLog : string ; // field example 
-}

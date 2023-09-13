@@ -3,6 +3,11 @@
 package ${target.javaPackageFromFolder(${SRC})};
 
 import com.egovframework.javaservice.treeframework.service.TreeService;
+import com.egovframework.javaservice.treeframework.service.TreeService;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import java.util.List;
+import java.util.Set;
 
 public interface ${entity.name} extends TreeService {
 

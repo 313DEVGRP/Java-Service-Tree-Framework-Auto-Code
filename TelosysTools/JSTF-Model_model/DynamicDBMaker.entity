@@ -1,5 +1,0 @@
-// Entity DynamicDBMaker
-
-DynamicDBMaker {
-  dynamicDBMaker : string ; // field example 
-}

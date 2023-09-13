@@ -1,5 +1,0 @@
-// Entity ReqStatusLog
-
-ReqStatusLog {
-  reqStatusLog : string ; // field example 
-}

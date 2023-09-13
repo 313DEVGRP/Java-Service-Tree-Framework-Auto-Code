@@ -1,5 +1,0 @@
-// Entity ReqReview
-
-ReqReview {
-  reqReview : string ; // field example 
-}
