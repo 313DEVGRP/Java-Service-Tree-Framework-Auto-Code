@@ -1,8 +1,0 @@
-server:
-  max-http-header-size: 24576
-
-endpoints:
-  configprops:
-    sensitive: false
-  env:
-    sensitive: false
