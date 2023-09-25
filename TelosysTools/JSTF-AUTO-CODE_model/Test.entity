@@ -1,0 +1,5 @@
+// Entity Test
+
+Test {
+  test : string ; // field example 
+}
