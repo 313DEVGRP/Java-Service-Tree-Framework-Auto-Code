@@ -5,7 +5,7 @@
 --
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_${entityUpperCase}_LOG` (
-(
+
 	`c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
@@ -20,7 +20,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_${entityUpperCase}_LOG` (
     `c_date`                    DATETIME NULL COMMENT '노드 변경 시',
 
 
-
+	`c_etc`                     varchar(255)    COMMENT '비고',
+    `c_desc`                    text            COMMENT '설명',
+    `c_contents`                longtext        COMMENT '내용'
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='T_ARMS_${entityUpperCase}_LOG';
  
@@ -36,6 +38,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_${entityUpperCase}` (
     `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
 
+	`c_etc`                     varchar(255)    COMMENT '비고',
+    `c_desc`                    text            COMMENT '설명',
+    `c_contents`                longtext        COMMENT '내용'
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='T_ARMS_${entityUpperCase}';
  
