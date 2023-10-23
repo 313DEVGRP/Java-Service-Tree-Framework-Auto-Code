@@ -36,6 +36,8 @@ import ${ROOT_PKG}.arms.${entityLowerCase}.service.${entity.name};
 
 @Slf4j
 @Controller
+@RestController
+@AllArgsConstructor
 @RequestMapping(value = {"/arms/${entity0toLowerCase}"})
 public class ${entity.name}Controller extends TreeAbstractController<${entity.name}, ${entity.name}DTO, ${entity.name}Entity> {
 
